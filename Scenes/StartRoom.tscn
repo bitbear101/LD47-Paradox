@@ -1,0 +1,188 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scenes/Obelisk.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 50, 0.5, 50 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.2, 0.227451, 0.309804, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -25, 0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, -0.25, -25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, -25, -25, -0.25, 25, 25, 0.25, 25, -25, -0.25, 25, -25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, -25, -0.25, -25, -25, 0.25, -25, 25, -0.25, -25 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( -25, 0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, -0.25, -25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, -25, -25, -0.25, 25, 25, 0.25, 25, -25, -0.25, 25, -25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, -25, -0.25, -25, -25, 0.25, -25, 25, -0.25, -25 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 50, 50, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( -25, 25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, -25, -0.25, -25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, -25, -25, -0.25, -25, 25, -0.25, 25, -25, -0.25 )
+
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( -25, 25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, -25, -0.25, -25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, -25, -25, -0.25, -25, 25, -0.25, 25, -25, -0.25 )
+
+[sub_resource type="CubeMesh" id=9]
+size = Vector3( 0.5, 50, 50 )
+
+[sub_resource type="SpatialMaterial" id=10]
+albedo_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=11]
+points = PoolVector3Array( -0.25, 25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, -25, -25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, 0.25, 25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, -25, -25, -0.25, -25, 25, 0.25, 25, 25, -0.25, -25, 25, -0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, -0.25, -25, -25, -0.25, 25, -25, 0.25, -25, -25 )
+
+[sub_resource type="CubeMesh" id=12]
+size = Vector3( 0.5, 50, 50 )
+
+[sub_resource type="SpatialMaterial" id=13]
+albedo_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=14]
+points = PoolVector3Array( -0.25, 25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, -25, -25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, 0.25, 25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, -25, -25, -0.25, -25, 25, 0.25, 25, 25, -0.25, -25, 25, -0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, -0.25, -25, -25, -0.25, 25, -25, 0.25, -25, -25 )
+
+[sub_resource type="CubeMesh" id=15]
+size = Vector3( 20, 0.5, 20 )
+
+[sub_resource type="SpatialMaterial" id=16]
+albedo_color = Color( 0.462745, 0.52549, 0.690196, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=18]
+points = PoolVector3Array( -10, 0.25, 10, 10, 0.25, -10, 10, 0.25, 10, -10, 0.25, -10, -10, -0.25, 10, 10, -0.25, -10, 10, -0.25, 10, -10, -0.25, -10, 10, 0.25, 10, -10, 0.25, -10, 10, 0.25, -10, -10, 0.25, 10, 10, -0.25, 10, -10, -0.25, -10, 10, -0.25, -10, -10, -0.25, 10, 10, 0.25, 10, -10, -0.25, 10, -10, 0.25, 10, 10, -0.25, 10, 10, 0.25, -10, -10, -0.25, -10, -10, 0.25, -10, 10, -0.25, -10 )
+
+[sub_resource type="CubeMesh" id=17]
+size = Vector3( 5, 0.5, 5 )
+
+[sub_resource type="ConvexPolygonShape" id=19]
+points = PoolVector3Array( -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5 )
+
+[sub_resource type="ConvexPolygonShape" id=20]
+points = PoolVector3Array( -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5 )
+
+[sub_resource type="ConvexPolygonShape" id=22]
+points = PoolVector3Array( -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5 )
+
+[sub_resource type="ConvexPolygonShape" id=23]
+points = PoolVector3Array( -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5 )
+
+[sub_resource type="ConvexPolygonShape" id=24]
+points = PoolVector3Array( -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5 )
+
+[node name="TestScene" type="Spatial"]
+
+[node name="Room" type="KinematicBody" parent="."]
+
+[node name="Floor" type="MeshInstance" parent="Room"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room"]
+shape = SubResource( 3 )
+
+[node name="Roof" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
+shape = SubResource( 4 )
+
+[node name="Wall" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, 25.25 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, 25.25 )
+shape = SubResource( 7 )
+
+[node name="Wall2" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, -25.25 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, -25.25 )
+shape = SubResource( 8 )
+
+[node name="Wall3" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.25, 24.75, 0 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 10 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.25, 24.75, 0 )
+shape = SubResource( 11 )
+
+[node name="Wall4" type="MeshInstance" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.25, 24.75, 0 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.25, 24.75, 0 )
+shape = SubResource( 14 )
+
+[node name="Platforms" type="KinematicBody" parent="."]
+
+[node name="Starting platform" type="MeshInstance" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 0 )
+mesh = SubResource( 15 )
+material/0 = SubResource( 16 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5, 0 )
+shape = SubResource( 18 )
+
+[node name="Starting platform2" type="MeshInstance" parent="Platforms"]
+transform = Transform( 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 1, 7, 0 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="CollisionShape2" type="CollisionShape" parent="Platforms"]
+transform = Transform( 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 1, 7, 0 )
+shape = SubResource( 19 )
+
+[node name="Starting platform3" type="MeshInstance" parent="Platforms"]
+transform = Transform( 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -7, 9, 0 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="CollisionShape3" type="CollisionShape" parent="Platforms"]
+transform = Transform( 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -7, 9, 0 )
+shape = SubResource( 20 )
+
+[node name="Starting platform5" type="MeshInstance" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 17, 0 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="CollisionShape5" type="CollisionShape" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 17, 0 )
+shape = SubResource( 22 )
+
+[node name="Starting platform6" type="MeshInstance" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -22, 19.25, 2.75 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="CollisionShape6" type="CollisionShape" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -22, 19.25, 2.75 )
+shape = SubResource( 23 )
+
+[node name="Starting platform7" type="MeshInstance" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -22, 19.25, -2.75 )
+mesh = SubResource( 17 )
+material/0 = null
+
+[node name="CollisionShape7" type="CollisionShape" parent="Platforms"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -22, 19.25, -2.75 )
+shape = SubResource( 24 )
+
+[node name="Obelisk" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 10, 0 )
+rotatioSpeed = 20.0

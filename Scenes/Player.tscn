@@ -24,7 +24,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
 
 [node name="GrappleRay" type="RayCast" parent="CameraGimbal/Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -60 )
+cast_to = Vector3( 0, 0, -30 )
 
 [node name="Crossair" type="TextureRect" parent="CameraGimbal/Camera"]
 margin_left = 624.0
@@ -47,7 +47,6 @@ enabled = true
 cast_to = Vector3( 0, -0.5, 0 )
 
 [node name="GrappleLine" parent="." instance=ExtResource( 3 )]
-length = 10.0
 maxRadius = 1.356
 shape = 1.0
 points = [ Vector3( 0, 0, 0 ), Vector3( 10, 10, 10 ) ]

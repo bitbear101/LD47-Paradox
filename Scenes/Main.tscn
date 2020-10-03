@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/InputHandler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/StartRoom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Orb.tscn" type="PackedScene" id=5]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.5, 2, 2.5 )
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="StartRoom" parent="." instance=ExtResource( 4 )]
+
+[node name="InputHandler" parent="." instance=ExtResource( 3 )]
+
+[node name="PlayerBody" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 7, 1.14193 )
+
+[node name="Orb" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 14.5, 0 )
+
+[node name="AreaExit" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.993, 19.5, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AreaExit"]
+shape = SubResource( 1 )
