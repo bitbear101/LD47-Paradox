@@ -3,5 +3,4 @@
 [ext_resource path="res://Scripts/DrawGrappleLine.cs" type="Script" id=1]
 
 [node name="GrappleLine" type="ImmediateGeometry"]
-visible = false
 script = ExtResource( 1 )

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/PlayerMovement.cs" type="Script" id=1]
 [ext_resource path="res://Textures/Cursors/Cursor.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GrappleLine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/DrawGrappleLine.cs" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -46,7 +47,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 enabled = true
 cast_to = Vector3( 0, -0.5, 0 )
 
-[node name="GrappleLine" parent="." instance=ExtResource( 3 )]
-maxRadius = 1.356
-shape = 1.0
-points = [ Vector3( 0, 0, 0 ), Vector3( 10, 10, 10 ) ]
+[node name="GrappleLine" type="ImmediateGeometry" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+target = Vector3( 0, 2, -20 )

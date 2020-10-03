@@ -1,21 +1,24 @@
 using Godot;
 using System;
+using EventCallback;
 
-public enum STATE
+public enum ORB_STATE
 {
     IDLE,
     CHASE
 };
 public class AIStateMachine : KinematicBody
 {
-
+    [Export]
+    int speed = 125;
     KinematicBody player;
     //Set the orbs state to idle when creating it
-    STATE state = STATE.IDLE;
+    ORB_STATE state = ORB_STATE.IDLE;
 
     public override void _Ready()
     {
         player = GetNode<KinematicBody>("../PlayerBody");
+        SetStateEvent.RegisterListener(SetState);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,18 +26,30 @@ public class AIStateMachine : KinematicBody
     {
         switch (state)
         {
-            case STATE.IDLE:
+            case ORB_STATE.IDLE:
+            //Looks at the player
+            LookAt(player.GlobalTransform.origin, Vector3.Up);
                 break;
 
-            case STATE.CHASE:
-
-                //Check the distance from the players position to the hook point of the grapple
-                //GD.Print("Distance to hook point = " + Transform.origin.DistanceTo(hookPoint));
-                if (Transform.origin.DistanceTo(player.Transform.Position) < 1.5f)
+            case ORB_STATE.CHASE:
+            //Looks at the player
+             LookAt(player.GlobalTransform.origin, Vector3.Up);
+            //Check if the distance from the player is more than 4 units
+                if (Transform.origin.DistanceTo(player.Transform.origin) > 3f)
                 {
-                    Transform = new Transform(Transform.basis, Transform.origin.LinearInterpolate(player.Transform.Position, maxGrappleSpeed * delta));
+                    //If the distance from the player is more than 4 units we declare velocity and start moving towards the player
+                    Vector3 velocity = Vector3.Zero;
+                    //velocity = (player.GlobalTransform.origin - GlobalTransform.origin).Normalized() * speed * delta;
+                    velocity = GlobalTransform.origin.LinearInterpolate(player.GlobalTransform.origin, speed * delta);
+                    MoveAndSlide(velocity, Vector3.Up);
                 }
                 break;
         }
+    }
+
+    private void SetState(SetStateEvent ssei)
+    {
+        //Set the new state of the orb
+state = ssei.newState;
     }
 }
