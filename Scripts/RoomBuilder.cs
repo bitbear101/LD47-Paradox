@@ -2,16 +2,6 @@ using Godot;
 using System;
 using EventCallback;
 
-public enum ExitLoction
-{
-    FRONT,
-    BACK,
-    LEFT,
-    RIGHT,
-    ROOF,
-    FLOOR
-};
-
 public class RoomBuilder : Spatial
 {
     //BUILD NOTES:
@@ -23,8 +13,6 @@ public class RoomBuilder : Spatial
     //5. The exit and entrance is then taken into acount and the room is then filled with the apropriate platforms
     //5.1 Room openings (exit and entrance) bool topOpen, bottomOpen, leftOpen
 
-    //The exit location for this room
-    ExitLoction myExit;
     //Room openings to detirmine the platforms that are needed for the room
     bool roofOpen = false, floorOpen = false, leftOpen = false, rightOpen = false, frontOpen = false, backOpen = false;
     //The rays to detect the the wall of the adjecent rooms
@@ -43,7 +31,6 @@ public class RoomBuilder : Spatial
     public override void _Ready()
     {
         LoadResources();
-        InitResources();
         AdjacentRoom();
     }
 
@@ -67,12 +54,6 @@ public class RoomBuilder : Spatial
         floorWall = GetNode<KinematicBody>("Floor");
         //Grab the reference to the exit walls scene
         exitWallPack = ResourceLoader.Load("res://Scenes/ExitWall.tscn") as PackedScene;
-    }
-
-    private void InitResources()
-    {
-        //exitWall = (KinematicBody)exitWallPack.Instance();
-        //AddChild(exitWall);
     }
 
     private void AdjacentRoom()
@@ -121,43 +102,40 @@ public class RoomBuilder : Spatial
         }
     }
 
-    private void PlaceExitWall(ExitLoction location)
+    private void PlaceExitWall(RoomDirection location)
     {
-        switch (myExit)
+        if (exitPlaced) return;
+        switch (location)
         {
-            case ExitLoction.BACK:
+            case RoomDirection.BACK:
                 backWall.QueueFree();
                 //Instance the exit wall her and position it to align
                 break;
-            case ExitLoction.FRONT:
+            case RoomDirection.FRONT:
                 frontWall.QueueFree();
                 break;
-            case ExitLoction.LEFT:
+            case RoomDirection.LEFT:
                 leftWall.QueueFree();
                 break;
-            case ExitLoction.RIGHT:
+            case RoomDirection.RIGHT:
                 rightWall.QueueFree();
                 break;
-            case ExitLoction.ROOF:
+            case RoomDirection.TOP:
                 roofWall.QueueFree();
                 break;
-            case ExitLoction.FLOOR:
+            case RoomDirection.BOTTOM:
                 floorWall.QueueFree();
                 break;
         }
-
     }
 
     private void InitExitWall(PlaceExitEvent peei)
     {
+        //Where the exit needs to go
+        PlaceExitWall(peei.newLocation);
         //We have to do this so that if the message to place a exit is sent to the newest room that this room does not also place antother exit util the whole room is just exits
         //To bad the player will need to figure out there is no exit ;)
-        if(!exitPlaced)
-        {
-            exitPlaced = true;
-            //We place the exit
-        }
-
+        exitPlaced = true;
     }
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)

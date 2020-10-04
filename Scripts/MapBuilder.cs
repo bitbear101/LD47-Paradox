@@ -2,8 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using EventCallback;
-
-
 public enum RoomDirection
 {
     FRONT,
@@ -34,7 +32,7 @@ public class MapBuilder : Spatial
     public override void _Ready()
     {
         //Get the room scene
-        roomScene = ResourceLoader.Load("res://Scene/BaseRoom.tscn") as PackedScene;
+        roomScene = ResourceLoader.Load("res://Scenes/BaseRoom.tscn") as PackedScene;
         //Place the first room
         GenerateRoom(new Vector3(-50, 0, 0));
         //We placed the room manual in the front so we set it manualy
@@ -52,10 +50,31 @@ public class MapBuilder : Spatial
         } while (newRoomDirection != lastRoomDirection);
         //If we get a valid location we set the old location to the new lacation for the next interation
         lastRoomDirection = newRoomDirection;
-
+        //Init the new location to zero
+        Vector3 newLocation = Vector3.Zero;
         //calculate the the new position depending on the placement 
-        //Vector3 newLocation = lastLacation +
-        //GenerateRoom()
+        switch (newRoomDirection)
+        {
+            case RoomDirection.BACK:
+                newLocation = lastLacation + new Vector3(50, 0, 0);
+                break;
+            case RoomDirection.FRONT:
+            newLocation = lastLacation + new Vector3(-50, 0, 0);
+                break;
+            case RoomDirection.LEFT:
+            newLocation = lastLacation + new Vector3(0, 0, 50);
+                break;
+            case RoomDirection.RIGHT:
+            newLocation = lastLacation + new Vector3(0, 0, -50);
+                break;
+            case RoomDirection.TOP:
+            newLocation = lastLacation + new Vector3(0, 50, 0);
+                break;
+            case RoomDirection.BOTTOM:
+            newLocation = lastLacation + new Vector3(0, -50, 0);
+                break;
+        }
+        GenerateRoom(newLocation);
     }
     private void GenerateRoom(Vector3 pos)
     {
@@ -64,13 +83,18 @@ public class MapBuilder : Spatial
         //Instance the room and set the room spatial to it so we can edit the spawn position of the room
         room = (Spatial)roomScene.Instance();
         //Set the position of hte room
-        //room.Transform = new Transform(room.Transform.basis, pos);
+        room.Transform = new Transform(room.Transform.basis, pos);
         //Add the room to the room list
-        //roomList.Add(room);
+        roomList.Add(room);
         //Set the room as a child of the map builder
         AddChild(room);
         //Set the last placed rooms ocation so when we place the next one we use this location to calculate the new position of the new room
         lastLacation = pos;
+        //Send signal to room of where the exit needs to go ==============
+        PlaceExitEvent peei = new PlaceExitEvent();
+        peei.newLocation = newRoomDirection;
+        peei.FireEvent();
+        //================================================================
     }
 
     private void ClearRooms()
@@ -87,7 +111,7 @@ public class MapBuilder : Spatial
         //If the number of rooms drops below 5 then we generate a new one and place it
         if (roomList.Count < 5)
         {
-            //TakeStep(lastRoomDirection);
+            TakeStep(lastRoomDirection);
         }
     }
 }
