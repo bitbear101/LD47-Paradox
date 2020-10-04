@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/Orb.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/AreaExit.cs" type="Script" id=6]
 [ext_resource path="res://Scripts/MapBuilder.cs" type="Script" id=7]
-[ext_resource path="res://Scenes/BaseRoom.tscn" type="PackedScene" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 2, 2.5 )
@@ -39,9 +38,5 @@ one_shot = true
 autostart = true
 
 [node name="MapBuilder" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8171, 10.9246, -57.8424 )
 script = ExtResource( 7 )
-
-[node name="BaseRoom" parent="MapBuilder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.9135, -10.6874, 57.8049 )
 [connection signal="body_entered" from="AreaExit" to="AreaExit" method="OnAreaExitBodyEntered"]

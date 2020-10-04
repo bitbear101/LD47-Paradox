@@ -52,6 +52,12 @@ material/0 = SubResource( 2 )
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 shape = SubResource( 3 )
 
+[node name="FloorRay" type="RayCast" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15 )
+enabled = true
+cast_to = Vector3( 0, -5, 0 )
+collision_mask = 2
+
 [node name="Roof" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0 )
 collision_layer = 2
@@ -66,6 +72,12 @@ material/0 = SubResource( 2 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Roof"]
 shape = SubResource( 4 )
+
+[node name="RoofRay" type="RayCast" parent="Roof"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 15 )
+enabled = true
+cast_to = Vector3( 0, 5, 0 )
+collision_mask = 2
 
 [node name="LeftWall" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, 25.25 )
@@ -82,6 +94,12 @@ material/0 = SubResource( 6 )
 [node name="CollisionShape3" type="CollisionShape" parent="LeftWall"]
 shape = SubResource( 7 )
 
+[node name="LeftRay" type="RayCast" parent="LeftWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, -0.5 )
+enabled = true
+cast_to = Vector3( 0, 0, 5 )
+collision_mask = 2
+
 [node name="RightWall" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.75, -25.25 )
 collision_layer = 2
@@ -96,6 +114,12 @@ material/0 = SubResource( 6 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="RightWall"]
 shape = SubResource( 8 )
+
+[node name="RightRay" type="RayCast" parent="RightWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0.5 )
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
+collision_mask = 2
 
 [node name="BackWall" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.25, 24.75, 0 )
@@ -112,8 +136,14 @@ material/0 = SubResource( 10 )
 [node name="CollisionShape5" type="CollisionShape" parent="BackWall"]
 shape = SubResource( 11 )
 
+[node name="BackRay" type="RayCast" parent="BackWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -15, 0 )
+enabled = true
+cast_to = Vector3( 5, 0, 0 )
+collision_mask = 2
+
 [node name="FrontWall" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.263, 24.75, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.25, 24.75, 0 )
 collision_layer = 2
 collision_mask = 2
 __meta__ = {
@@ -127,51 +157,8 @@ material/0 = SubResource( 10 )
 [node name="CollisionShape6" type="CollisionShape" parent="FrontWall"]
 shape = SubResource( 11 )
 
-[node name="FloorRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 15 )
+[node name="FrontRay" type="RayCast" parent="FrontWall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -15, 0 )
 enabled = true
-cast_to = Vector3( 0, -5, 0 )
-collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="RoofRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50.5, 15 )
-cast_to = Vector3( 0, 5, 0 )
-collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="LeftRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, 26 )
-cast_to = Vector3( 0, 0, 5 )
-collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="RightRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -26 )
-cast_to = Vector3( 0, 0, -5 )
-collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="BackRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 15, 15 )
-cast_to = Vector3( 5, 0, 0 )
-collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="FrontRay" type="RayCast" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 15, 15 )
 cast_to = Vector3( -5, 0, 0 )
 collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}

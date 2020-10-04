@@ -36,6 +36,8 @@ public class RoomBuilder : Spatial
     //The body for the wall
     KinematicBody exitWall;
 
+    bool checkedForRoom = false, exitPlaced = false;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -47,13 +49,15 @@ public class RoomBuilder : Spatial
 
     private void LoadResources()
     {
+        //Regestir for the event callback for the placing of the rooms
+        PlaceExitEvent.RegisterListener(InitExitWall);
         //Init he raycasts of the room walls used for creating the room
-        roofRay = GetNode<RayCast>("RoofRay");
-        floorRay = GetNode<RayCast>("FloorRay");
-        frontRay = GetNode<RayCast>("FrontRay");
-        backRay = GetNode<RayCast>("BackRay");
-        leftRay = GetNode<RayCast>("LeftRay");
-        rightRay = GetNode<RayCast>("RightRay");
+        roofRay = GetNode<RayCast>("Roof/RoofRay");
+        floorRay = GetNode<RayCast>("Floor/FloorRay");
+        frontRay = GetNode<RayCast>("FrontWall/FrontRay");
+        backRay = GetNode<RayCast>("BackWall/BackRay");
+        leftRay = GetNode<RayCast>("LeftWall/LeftRay");
+        rightRay = GetNode<RayCast>("RightWall/RightRay");
         //Get the reference to the walls
         frontWall = GetNode<KinematicBody>("FrontWall");
         backWall = GetNode<KinematicBody>("BackWall");
@@ -115,8 +119,6 @@ public class RoomBuilder : Spatial
             //Delete the wall to open it up to the adjacent rooms exit
             rightWall.QueueFree();
         }
-
-        GD.Print(roofOpen +" "+ floorOpen +" "+ leftOpen +" "+ rightOpen +" "+ frontOpen +" "+ backOpen);
     }
 
     private void PlaceExitWall(ExitLoction location)
@@ -146,13 +148,27 @@ public class RoomBuilder : Spatial
 
     }
 
-    private void InitExitWall()
+    private void InitExitWall(PlaceExitEvent peei)
     {
+        //We have to do this so that if the message to place a exit is sent to the newest room that this room does not also place antother exit util the whole room is just exits
+        //To bad the player will need to figure out there is no exit ;)
+        if(!exitPlaced)
+        {
+            exitPlaced = true;
+            //We place the exit
+        }
 
     }
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-
+        //Run the function only once, yes I know there are better ways to do this but I can't think of one now and my bag of fucks is empty so I cant gave any
+        if (!checkedForRoom)
+        {
+            //Set the checked bool to true so it only runs once in its life, sorry function
+            checkedForRoom = true;
+            //Check for adjacent rooms
+            AdjacentRoom();
+        }
     }
 }
