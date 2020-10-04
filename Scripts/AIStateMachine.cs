@@ -65,7 +65,6 @@ public class AIStateMachine : KinematicBody
                 break;
         }
     }
-
     private void SetState(SetStateEvent ssei)
     {
         //Set the new state of the orb

@@ -359,11 +359,13 @@ public class PlayerMovement : KinematicBody
         {
             verticalVelocity.y = 0;
             Transform = new Transform(Transform.basis, Transform.origin.LinearInterpolate(hookPoint, maxGrappleSpeed * delta));
+            grappleLine.DrawLine(Transform.origin, hookPoint);
             //Check the distance from the players position to the hook point of the grapple
             //GD.Print("Distance to hook point = " + Transform.origin.DistanceTo(hookPoint));
             if (Transform.origin.DistanceTo(hookPoint) < 1.5f)
             {
                 reachedHookPoint = true;
+                grappleLine.HideLine();
             }
         }
 

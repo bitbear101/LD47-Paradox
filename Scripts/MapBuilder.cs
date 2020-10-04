@@ -36,7 +36,8 @@ public class MapBuilder : Spatial
         //Place the first room
         GenerateRoom(new Vector3(-50, 0, 0));
         //We placed the room manual in the front so we set it manualy
-        lastRoomDirection = RoomDirection.FRONT;
+        newRoomDirection = RoomDirection.FRONT;
+        lastRoomDirection = newRoomDirection;
         //Randomly seed random number generator when starting the game
         rng.Seed = OS.GetTicksMsec();
     }
@@ -47,7 +48,7 @@ public class MapBuilder : Spatial
         {
             //Get the random direction from the random number generator
             newRoomDirection = (RoomDirection)rng.RandiRange(0, 5);
-        } while (newRoomDirection != lastRoomDirection);
+        } while (newRoomDirection == lastRoomDirection);
         //If we get a valid location we set the old location to the new lacation for the next interation
         lastRoomDirection = newRoomDirection;
         //Init the new location to zero
@@ -77,7 +78,12 @@ public class MapBuilder : Spatial
         GenerateRoom(newLocation);
     }
     private void GenerateRoom(Vector3 pos)
-    {
+    {        
+        //Send signal to room of where the exit needs to go ==============
+        PlaceExitEvent peei = new PlaceExitEvent();
+        peei.newLocation = newRoomDirection;
+        peei.FireEvent();
+        //================================================================
         //Reseed the random number generator every time we have to place  room
         rng.Seed = OS.GetTicksMsec();
         //Instance the room and set the room spatial to it so we can edit the spawn position of the room
@@ -90,11 +96,7 @@ public class MapBuilder : Spatial
         AddChild(room);
         //Set the last placed rooms ocation so when we place the next one we use this location to calculate the new position of the new room
         lastLacation = pos;
-        //Send signal to room of where the exit needs to go ==============
-        PlaceExitEvent peei = new PlaceExitEvent();
-        peei.newLocation = newRoomDirection;
-        peei.FireEvent();
-        //================================================================
+
     }
 
     private void ClearRooms()

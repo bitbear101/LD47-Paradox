@@ -52,4 +52,3 @@ collision_mask = 3
 
 [node name="GrappleLine" parent="." instance=ExtResource( 3 )]
 visible = false
-target = Vector3( 0, 2, -20 )

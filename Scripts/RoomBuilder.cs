@@ -31,7 +31,6 @@ public class RoomBuilder : Spatial
     public override void _Ready()
     {
         LoadResources();
-        AdjacentRoom();
     }
 
     private void LoadResources()
@@ -56,14 +55,16 @@ public class RoomBuilder : Spatial
         exitWallPack = ResourceLoader.Load("res://Scenes/ExitWall.tscn") as PackedScene;
     }
 
-    private void AdjacentRoom()
+    private void CheckForExits()
     {
+        GD.Print("Checking for exits");
         if (roofRay.IsColliding())
         {
             //Set the open flag on the wall making contact with the previous room 
             roofOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             roofWall.QueueFree();
+             GD.Print("Exit Found");
         }
         if (floorRay.IsColliding())
         {
@@ -71,6 +72,7 @@ public class RoomBuilder : Spatial
             floorOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             floorWall.QueueFree();
+            GD.Print("Exit Found");
         }
         if (frontRay.IsColliding())
         {
@@ -78,6 +80,7 @@ public class RoomBuilder : Spatial
             frontOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             frontWall.QueueFree();
+            GD.Print("Exit Found");
         }
         if (backRay.IsColliding())
         {
@@ -85,6 +88,7 @@ public class RoomBuilder : Spatial
             backOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             backWall.QueueFree();
+            GD.Print("Exit Found");
         }
         if (leftRay.IsColliding())
         {
@@ -92,6 +96,7 @@ public class RoomBuilder : Spatial
             leftOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             leftWall.QueueFree();
+            GD.Print("Exit Found");
         }
         if (rightRay.IsColliding())
         {
@@ -99,31 +104,61 @@ public class RoomBuilder : Spatial
             rightOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             rightWall.QueueFree();
+            GD.Print("Exit Found");
         }
     }
 
     private void PlaceExitWall(RoomDirection location)
     {
+        //Swing the directions back should become forward and so on
         if (exitPlaced) return;
         switch (location)
         {
             case RoomDirection.BACK:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, backWall.Transform.origin);
+                exitWall.RotateY(Mathf.Deg2Rad(90));
+                AddChild(exitWall);
                 backWall.QueueFree();
                 //Instance the exit wall her and position it to align
                 break;
             case RoomDirection.FRONT:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, frontWall.Transform.origin);
+                exitWall.RotateY(Mathf.Deg2Rad(-90));
+                AddChild(exitWall);
                 frontWall.QueueFree();
                 break;
             case RoomDirection.LEFT:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, leftWall.Transform.origin);
+                AddChild(exitWall);
                 leftWall.QueueFree();
                 break;
             case RoomDirection.RIGHT:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, rightWall.Transform.origin);
+                AddChild(exitWall);
                 rightWall.QueueFree();
                 break;
             case RoomDirection.TOP:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, roofWall.Transform.origin);
+                exitWall.RotateX(Mathf.Deg2Rad(90));
+                AddChild(exitWall);
                 roofWall.QueueFree();
                 break;
             case RoomDirection.BOTTOM:
+                //Create the exit wall
+                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall.Transform = new Transform(exitWall.Transform.basis, floorWall.Transform.origin);
+                exitWall.RotateX(Mathf.Deg2Rad(-90));
+                AddChild(exitWall);
                 floorWall.QueueFree();
                 break;
         }
@@ -146,7 +181,7 @@ public class RoomBuilder : Spatial
             //Set the checked bool to true so it only runs once in its life, sorry function
             checkedForRoom = true;
             //Check for adjacent rooms
-            AdjacentRoom();
+            CheckForExits();
         }
     }
 }
