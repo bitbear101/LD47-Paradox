@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/PlayerMovement.cs" type="Script" id=1]
 [ext_resource path="res://Textures/Cursors/Cursor.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/GrappleLine.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/DrawGrappleLine.cs" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -11,6 +10,8 @@ height = 1.5
 
 [node name="PlayerBody" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.14193 )
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="BodyCollisionShape" type="CollisionShape" parent="."]
@@ -41,12 +42,14 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
 enabled = true
 cast_to = Vector3( 0, 1, 0 )
+collision_mask = 3
 
 [node name="GroundCollisionRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 enabled = true
 cast_to = Vector3( 0, -0.5, 0 )
+collision_mask = 3
 
-[node name="GrappleLine" type="ImmediateGeometry" parent="." instance=ExtResource( 3 )]
-script = ExtResource( 4 )
+[node name="GrappleLine" parent="." instance=ExtResource( 3 )]
+visible = false
 target = Vector3( 0, 2, -20 )

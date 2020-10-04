@@ -4,8 +4,14 @@ using EventCallback;
 
 public enum ORB_STATE
 {
+    //When the orb is just staring at you and not moving
     IDLE,
-    CHASE
+    //Chases the player around
+    CHASE,
+    //Teleport the player back to the starting point
+    TELPORT,
+    //Scans the player in an ominus way, ill impliment if i get time
+    SCAN
 };
 public class AIStateMachine : KinematicBody
 {
@@ -43,6 +49,19 @@ public class AIStateMachine : KinematicBody
                     velocity = GlobalTransform.origin.LinearInterpolate(player.GlobalTransform.origin, speed * delta);
                     MoveAndSlide(velocity, Vector3.Up);
                 }
+                //Check if the orb location is further than 20 units from the player
+                if(Transform.origin.DistanceTo(player.Transform.origin) > 30f)
+                {
+                    //Teleport the orb to the players location is it is further than 20 units, this stops the orb getting stuck problem
+                    //what can I say there is nothing like a good brute force solution to game jam games!
+                    Transform = new Transform(Transform.basis, player.Transform.origin + (Vector3.Up * 3)); 
+                }
+                break;
+                case ORB_STATE.SCAN:
+                //just some eye candy I want to apply later if there is time, all I need is more time!
+                break;
+                case ORB_STATE.TELPORT:
+                //We will just animate the orb shooting the player with a teleport lazer or something later
                 break;
         }
     }

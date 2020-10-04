@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/StartRoom.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Orb.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/AreaExit.cs" type="Script" id=6]
+[ext_resource path="res://Scenes/BaseRoom.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/RoomBuilder.cs" type="Script" id=8]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 2, 2.5 )
@@ -22,7 +24,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 7, 1.14193 )
 
 [node name="Orb" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 14.5, 0 )
-speed = 125
 
 [node name="AreaExit" type="Area" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 19.5, 0 )
@@ -35,4 +36,11 @@ shape = SubResource( 1 )
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="BaseRoom" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -89.6684, 81.0249, 4.93888 )
+
+[node name="RoomBuilder" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.8171, 10.9246, -57.8424 )
+script = ExtResource( 8 )
 [connection signal="body_entered" from="AreaExit" to="AreaExit" method="OnAreaExitBodyEntered"]
