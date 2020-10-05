@@ -51,4 +51,5 @@ cast_to = Vector3( 0, -0.5, 0 )
 collision_mask = 3
 
 [node name="GrappleLine" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00392, -3.21305 )
 visible = false

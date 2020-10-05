@@ -3,9 +3,8 @@
 [ext_resource path="res://Scripts/DrawGrappleLine.cs" type="Script" id=1]
 
 [sub_resource type="CylinderMesh" id=1]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 10.0
+top_radius = 0.5
+bottom_radius = 0.5
 radial_segments = 6
 rings = 1
 

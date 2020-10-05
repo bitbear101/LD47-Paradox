@@ -227,6 +227,7 @@ public class PlayerMovement : KinematicBody
                 hasHookPoint = false;
                 reachedHookPoint = false;
                 hookPoint = new Vector3();
+                grappleLine.HideLine();
             }
         }
         //Grapling script to work on later
@@ -254,6 +255,7 @@ public class PlayerMovement : KinematicBody
             hasHookPoint = false;
             GlobalTranslate(new Vector3(0, -.2f, 0));
             reachedHookPoint = false;
+            grappleLine.HideLine();
         }
         if(reachedHookPoint && groundRay.IsColliding())
         {
@@ -264,6 +266,7 @@ public class PlayerMovement : KinematicBody
             //We set the hookPointGet
             hasHookPoint = false;
             reachedHookPoint = false;
+            grappleLine.HideLine();
         }
 
         if (!escape) escapePressed = false;
@@ -348,6 +351,7 @@ public class PlayerMovement : KinematicBody
                     hasHookPoint = false;
                     //Reset the hook point reached
                     reachedHookPoint = false;
+                    grappleLine.HideLine();
                 }
 
             }
@@ -359,13 +363,12 @@ public class PlayerMovement : KinematicBody
         {
             verticalVelocity.y = 0;
             Transform = new Transform(Transform.basis, Transform.origin.LinearInterpolate(hookPoint, maxGrappleSpeed * delta));
-            grappleLine.DrawLine(Transform.origin, hookPoint);
+            //grappleLine.DrawLine(Transform.origin, hookPoint);
             //Check the distance from the players position to the hook point of the grapple
             //GD.Print("Distance to hook point = " + Transform.origin.DistanceTo(hookPoint));
             if (Transform.origin.DistanceTo(hookPoint) < 1.5f)
             {
                 reachedHookPoint = true;
-                grappleLine.HideLine();
             }
         }
 
