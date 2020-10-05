@@ -19,20 +19,31 @@ public class RoomBuilder : Spatial
     RayCast floorRay, roofRay, frontRay, backRay, rightRay, leftRay;
     //The walls for the room
     KinematicBody frontWall, backWall, leftWall, rightWall, roofWall, floorWall;
+    //The platforms that make up the interior
+    KinematicBody platformSet1, platformSet2, platformSet3, platformSet4, platformSet5, platformSet6, platformSet7;
+    //The scenes for the platform
+    PackedScene platformSet1Scene = new PackedScene();
+    PackedScene platformSet2Scene = new PackedScene();
+    PackedScene platformSet3Scene = new PackedScene();
+    PackedScene platformSet4Scene = new PackedScene();
+    PackedScene platformSet5Scene = new PackedScene();
+    PackedScene platformSet6Scene = new PackedScene();
+    PackedScene platformSet7Scene = new PackedScene();
     //Theme pak for the scene
-    PackedScene exitWallPack = new PackedScene();
+    PackedScene exitWallScene = new PackedScene();
     //The body for the wall
     KinematicBody exitWall;
-
-    bool checkedForRoom = false, exitPlaced = false;
-
+    //Scheck for the exit placement
+    bool checkedForExits = false, exitPlaced = false;
+    //Random number generator to choose the platform set for the room
+    RandomNumberGenerator rng = new RandomNumberGenerator();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         LoadResources();
+        GeneratePlatformSet();
     }
-
     private void LoadResources()
     {
         //Regestir for the event callback for the placing of the rooms
@@ -51,20 +62,64 @@ public class RoomBuilder : Spatial
         rightWall = GetNode<KinematicBody>("RightWall");
         roofWall = GetNode<KinematicBody>("Roof");
         floorWall = GetNode<KinematicBody>("Floor");
+        //Get the refferences to the platform sets
+        platformSet1Scene = ResourceLoader.Load("res://Scenes/PlatformSet1.tscn") as PackedScene;
+        platformSet2Scene = ResourceLoader.Load("res://Scenes/PlatformSet2.tscn") as PackedScene;
+        platformSet3Scene = ResourceLoader.Load("res://Scenes/PlatformSet3.tscn") as PackedScene;
+        platformSet4Scene = ResourceLoader.Load("res://Scenes/PlatformSet4.tscn") as PackedScene;
+        platformSet5Scene = ResourceLoader.Load("res://Scenes/PlatformSet5.tscn") as PackedScene;
+        platformSet6Scene = ResourceLoader.Load("res://Scenes/PlatformSet6.tscn") as PackedScene;
+        platformSet7Scene = ResourceLoader.Load("res://Scenes/PlatformSet7.tscn") as PackedScene;
         //Grab the reference to the exit walls scene
-        exitWallPack = ResourceLoader.Load("res://Scenes/ExitWall.tscn") as PackedScene;
+        exitWallScene = ResourceLoader.Load("res://Scenes/ExitWall.tscn") as PackedScene;
     }
+    private void GeneratePlatformSet()
+    {
+        //3hours and 31min left and this decides to work perfectly the first time round, why not hte loos 4 hours ago WHYYYYYYY!?!??!1?!!
+        //Seed the random number generator
+        rng.Seed = OS.GetTicksUsec();
+        int platformSet = rng.RandiRange(1, 7);
 
+        switch (platformSet)
+        {
+            case 1:
+                platformSet1 = (KinematicBody)platformSet1Scene.Instance();
+                AddChild(platformSet1);
+                break;
+            case 2:
+                platformSet2 = (KinematicBody)platformSet2Scene.Instance();
+                AddChild(platformSet2);
+                break;
+            case 3:
+                platformSet3 = (KinematicBody)platformSet3Scene.Instance();
+                AddChild(platformSet3);
+                break;
+            case 4:
+                platformSet4 = (KinematicBody)platformSet4Scene.Instance();
+                AddChild(platformSet4);
+                break;
+            case 5:
+                platformSet5 = (KinematicBody)platformSet5Scene.Instance();
+                AddChild(platformSet5);
+                break;
+            case 6:
+                platformSet6 = (KinematicBody)platformSet6Scene.Instance();
+                AddChild(platformSet6);
+                break;
+            case 7:
+                platformSet7 = (KinematicBody)platformSet7Scene.Instance();
+                AddChild(platformSet7);
+                break;
+        }
+    }
     private void CheckForExits()
     {
-        GD.Print("Checking for exits");
         if (roofRay.IsColliding())
         {
             //Set the open flag on the wall making contact with the previous room 
             roofOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             roofWall.QueueFree();
-             GD.Print("Exit Found");
         }
         if (floorRay.IsColliding())
         {
@@ -72,7 +127,6 @@ public class RoomBuilder : Spatial
             floorOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             floorWall.QueueFree();
-            GD.Print("Exit Found");
         }
         if (frontRay.IsColliding())
         {
@@ -80,7 +134,6 @@ public class RoomBuilder : Spatial
             frontOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             frontWall.QueueFree();
-            GD.Print("Exit Found");
         }
         if (backRay.IsColliding())
         {
@@ -88,7 +141,6 @@ public class RoomBuilder : Spatial
             backOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             backWall.QueueFree();
-            GD.Print("Exit Found");
         }
         if (leftRay.IsColliding())
         {
@@ -96,7 +148,6 @@ public class RoomBuilder : Spatial
             leftOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             leftWall.QueueFree();
-            GD.Print("Exit Found");
         }
         if (rightRay.IsColliding())
         {
@@ -104,7 +155,6 @@ public class RoomBuilder : Spatial
             rightOpen = true;
             //Delete the wall to open it up to the adjacent rooms exit
             rightWall.QueueFree();
-            GD.Print("Exit Found");
         }
     }
 
@@ -116,7 +166,7 @@ public class RoomBuilder : Spatial
         {
             case RoomDirection.BACK:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, backWall.Transform.origin);
                 exitWall.RotateY(Mathf.Deg2Rad(90));
                 AddChild(exitWall);
@@ -125,7 +175,7 @@ public class RoomBuilder : Spatial
                 break;
             case RoomDirection.FRONT:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, frontWall.Transform.origin);
                 exitWall.RotateY(Mathf.Deg2Rad(-90));
                 AddChild(exitWall);
@@ -133,21 +183,21 @@ public class RoomBuilder : Spatial
                 break;
             case RoomDirection.LEFT:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, leftWall.Transform.origin);
                 AddChild(exitWall);
                 leftWall.QueueFree();
                 break;
             case RoomDirection.RIGHT:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, rightWall.Transform.origin);
                 AddChild(exitWall);
                 rightWall.QueueFree();
                 break;
             case RoomDirection.TOP:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, roofWall.Transform.origin);
                 exitWall.RotateX(Mathf.Deg2Rad(90));
                 AddChild(exitWall);
@@ -155,7 +205,7 @@ public class RoomBuilder : Spatial
                 break;
             case RoomDirection.BOTTOM:
                 //Create the exit wall
-                exitWall = (KinematicBody)exitWallPack.Instance();
+                exitWall = (KinematicBody)exitWallScene.Instance();
                 exitWall.Transform = new Transform(exitWall.Transform.basis, floorWall.Transform.origin);
                 exitWall.RotateX(Mathf.Deg2Rad(-90));
                 AddChild(exitWall);
@@ -176,10 +226,10 @@ public class RoomBuilder : Spatial
     public override void _Process(float delta)
     {
         //Run the function only once, yes I know there are better ways to do this but I can't think of one now and my bag of fucks is empty so I cant gave any
-        if (!checkedForRoom)
+        if (!checkedForExits)
         {
             //Set the checked bool to true so it only runs once in its life, sorry function
-            checkedForRoom = true;
+            checkedForExits = true;
             //Check for adjacent rooms
             CheckForExits();
         }

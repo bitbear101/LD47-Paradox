@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/RoomBuilder.cs" type="Script" id=1]
 [ext_resource path="res://Meshes/Material.material" type="Material" id=2]
 
-[sub_resource type="ArrayMesh" id=12]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Cube"
 surfaces/0 = {
 "aabb": AABB( -0.627501, -25.1, -25.1, 1.255, 50.2, 50.2 ),
@@ -18,13 +18,13 @@ surfaces/0 = {
 "vertex_count": 252
 }
 
+[sub_resource type="ConvexPolygonShape" id=2]
+points = PoolVector3Array( -25, 0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, -0.25, -25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, -25, -25, -0.25, 25, 25, 0.25, 25, -25, -0.25, 25, -25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, -25, -0.25, -25, -25, 0.25, -25, 25, -0.25, -25 )
+
 [sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -25, 0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, -0.25, -25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, -25, -25, -0.25, 25, 25, 0.25, 25, -25, -0.25, 25, -25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, -25, -0.25, -25, -25, 0.25, -25, 25, -0.25, -25 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
-points = PoolVector3Array( -25, 0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, -0.25, -25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, -25, -25, -0.25, 25, 25, 0.25, 25, -25, -0.25, 25, -25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, -25, -0.25, -25, -25, 0.25, -25, 25, -0.25, -25 )
-
-[sub_resource type="ArrayMesh" id=14]
+[sub_resource type="ArrayMesh" id=4]
 resource_name = "Cube002"
 surfaces/0 = {
 "aabb": AABB( -0.6275, -25.1, -25.1, 1.255, 50.2, 50.2 ),
@@ -39,13 +39,13 @@ surfaces/0 = {
 "vertex_count": 226
 }
 
-[sub_resource type="ConvexPolygonShape" id=7]
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -25, 25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, -25, -0.25, -25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, -25, -25, -0.25, -25, 25, -0.25, 25, -25, -0.25 )
 
-[sub_resource type="ConvexPolygonShape" id=8]
+[sub_resource type="ConvexPolygonShape" id=6]
 points = PoolVector3Array( -25, 25, 0.25, 25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, 0.25, -25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, -0.25, -25, 25, 0.25, 25, -25, 0.25, -25, -25, -0.25, 25, -25, -0.25, -25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, -25, -25, -0.25, -25, 25, -0.25, 25, -25, -0.25 )
 
-[sub_resource type="ArrayMesh" id=13]
+[sub_resource type="ArrayMesh" id=7]
 resource_name = "Cube001"
 surfaces/0 = {
 "aabb": AABB( -0.627501, -25.1, -25.1, 1.255, 50.2, 50.2 ),
@@ -60,7 +60,7 @@ surfaces/0 = {
 "vertex_count": 186
 }
 
-[sub_resource type="ConvexPolygonShape" id=11]
+[sub_resource type="ConvexPolygonShape" id=8]
 points = PoolVector3Array( -0.25, 25, 25, 0.25, 25, -25, 0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, 0.25, -25, -25, 0.25, -25, 25, -0.25, -25, -25, 0.25, 25, 25, -0.25, 25, -25, 0.25, 25, -25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, -25, 0.25, -25, -25, -0.25, -25, 25, 0.25, 25, 25, -0.25, -25, 25, -0.25, 25, 25, 0.25, -25, 25, 0.25, 25, -25, -0.25, -25, -25, -0.25, 25, -25, 0.25, -25, -25 )
 
 [node name="BaseRoom" type="Spatial"]
@@ -75,11 +75,11 @@ __meta__ = {
 
 [node name="FloorModel" type="MeshInstance" parent="Floor"]
 transform = Transform( -3.49691e-08, 1, 0, -0.8, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 12 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="FloorRay" type="RayCast" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15 )
@@ -97,11 +97,11 @@ __meta__ = {
 
 [node name="RoofModel" type="MeshInstance" parent="Roof"]
 transform = Transform( -3.49691e-08, 1, 0, -0.8, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 12 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="CollisionShape2" type="CollisionShape" parent="Roof"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="RoofRay" type="RayCast" parent="Roof"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 15 )
@@ -119,11 +119,11 @@ __meta__ = {
 
 [node name="LeftWallModel" type="MeshInstance" parent="LeftWall"]
 transform = Transform( -3.49691e-08, 0, -1, 0, 1, 0, 0.8, 0, -4.37114e-08, 0, 1.90735e-06, 1.90735e-06 )
-mesh = SubResource( 14 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CollisionShape3" type="CollisionShape" parent="LeftWall"]
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="LeftRay" type="RayCast" parent="LeftWall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, -0.5 )
@@ -141,11 +141,11 @@ __meta__ = {
 
 [node name="RightWallModels" type="MeshInstance" parent="RightWall"]
 transform = Transform( -3.49691e-08, 0, -1, 0, 1, 0, 0.8, 0, -4.37114e-08, 0, 1.90735e-06, -1.90735e-06 )
-mesh = SubResource( 14 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="CollisionShape4" type="CollisionShape" parent="RightWall"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 
 [node name="RightRay" type="RayCast" parent="RightWall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0.5 )
@@ -163,12 +163,12 @@ __meta__ = {
 
 [node name="BackWallModel" type="MeshInstance" parent="BackWall"]
 transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
-mesh = SubResource( 13 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="CollisionShape5" type="CollisionShape" parent="BackWall"]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 8 )
 
 [node name="BackRay" type="RayCast" parent="BackWall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -15, 0 )
@@ -186,11 +186,11 @@ __meta__ = {
 
 [node name="FrontWallModel" type="MeshInstance" parent="FrontWall"]
 transform = Transform( 0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0 )
-mesh = SubResource( 13 )
+mesh = SubResource( 7 )
 material/0 = null
 
 [node name="CollisionShape6" type="CollisionShape" parent="FrontWall"]
-shape = SubResource( 11 )
+shape = SubResource( 8 )
 
 [node name="FrontRay" type="RayCast" parent="FrontWall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -15, 0 )

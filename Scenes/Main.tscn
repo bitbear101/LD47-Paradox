@@ -1,15 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/InputHandler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/StartRoom.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Orb.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/AreaExit.cs" type="Script" id=6]
-[ext_resource path="res://Scripts/MapBuilder.cs" type="Script" id=7]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.5, 2, 2.5 )
+[ext_resource path="res://Scenes/MapBuilder.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
@@ -25,18 +21,9 @@ collision_mask = 3
 
 [node name="InputHandler" parent="." instance=ExtResource( 3 )]
 
-[node name="AreaExit" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 19.5, 0 )
-script = ExtResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="AreaExit"]
-shape = SubResource( 1 )
-
 [node name="LevelStartTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="MapBuilder" type="Spatial" parent="."]
-script = ExtResource( 7 )
-[connection signal="body_entered" from="AreaExit" to="AreaExit" method="OnAreaExitBodyEntered"]
+[node name="MapBuilder" parent="." instance=ExtResource( 6 )]

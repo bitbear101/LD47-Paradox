@@ -22,12 +22,13 @@ public class AIStateMachine : KinematicBody
     //The point where the player will be teleported back to
     Spatial teleportPoint;
     //The timer for the teleporter, if the countdown reaches zero the player is teleported to the start
-    Timer teleportTimer;
+    Timer teleportTimer, winTimer;
 
     public override void _Ready()
     {
         teleportPoint = GetNode<Spatial>("../StartRoom/TeleportPoint");
         teleportTimer = GetNode<Timer>("TeleportTimer");
+        winTimer = GetNode<Timer>("WinTimer");
         player = GetNode<KinematicBody>("../PlayerBody");
         SetStateEvent.RegisterListener(SetState);
     }
@@ -40,9 +41,20 @@ public class AIStateMachine : KinematicBody
             case ORB_STATE.IDLE:
                 //Looks at the player
                 LookAt(player.GlobalTransform.origin, Vector3.Up);
+                //Start the win timer and after 2 min the player will win the game if he doesn't exit the room
+                winTimer.Start();
+                if (winTimer.TimeLeft < 0.1)
+                {
+                    //Send win message to winEvent
+                    WinEvent wei = new WinEvent();
+                    wei.win = true;
+                    wei.FireEvent();
+                }
                 break;
 
             case ORB_STATE.CHASE:
+                //Stop the win timer, the game can never be won now
+                winTimer.Stop();
                 //Looks at the player
                 LookAt(player.GlobalTransform.origin, Vector3.Up);
                 //Check if the distance from the player is more than 4 units
@@ -58,26 +70,23 @@ public class AIStateMachine : KinematicBody
                     //what can I say there is nothing like a good brute force solution to game jam games!
                     Transform = new Transform(Transform.basis, player.Transform.origin + (Vector3.Up * 3));
                 }
-                if(Transform.origin.DistanceTo(player.Transform.origin) < 5)
+                if (Transform.origin.DistanceTo(player.Transform.origin) < 5)
                 {
-                    GD.Print("in distance, time left = " + teleportTimer.TimeLeft);
-                    if(teleportTimer.IsStopped())
+                    if (teleportTimer.IsStopped())
                     {
-                        GD.Print("Timer started");
                         teleportTimer.Start();
-                    }     
-                    if(teleportTimer.TimeLeft < 1)
-                    {GD.Print("Timer done");
+                    }
+                    if (teleportTimer.TimeLeft < 0.1)
+                    {
                         player.Transform = new Transform(player.Transform.basis, teleportPoint.Transform.origin);
                     }
                 }
                 else
                 {
-                    GD.Print("Timer Stopped");
                     teleportTimer.Stop();
                 }
                 break;
-                
+
             case ORB_STATE.SCAN:
                 //just some eye candy I want to apply later if there is time, all I need is more time!
                 break;

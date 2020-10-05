@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Textures/MenuItems/Start.png" type="Texture" id=1]
+[ext_resource path="res://Textures/MenuItems/Exit.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/MenuOutput.cs" type="Script" id=3]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+margin_bottom = 176.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 4.0
+margin_right = 366.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Start" type="Button" parent="HBoxContainer/VBoxContainer"]
+margin_right = 362.0
+margin_bottom = 86.0
+icon = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 362.0
+margin_bottom = 176.0
+icon = ExtResource( 2 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Start" to="." method="OnStartPressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Exit" to="." method="OnExitPressed"]
